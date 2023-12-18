@@ -1,0 +1,48 @@
+#!/usr/bin/python3
+
+import sys
+import math
+import time
+
+def quadratic_sieve(n):
+    x=math.isqrt(n)
+    while True:
+        y2 = x*x - n
+        y = math.isqrt(y2)
+        if y*y == y2:
+            return x-y, x+y
+        x += 1
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python factorize.py <file>")
+        return
+    file_path = sys.argv[1]
+    start_time = time.time()
+    try:
+        with open(file_path, 'r') as file:
+            numbers = file.readlines()
+        for number in numbers:
+            num = int(number.strip())
+            p, q = quadratic_sieve(num)
+            if p*q == num:
+                print(f"{num} is prime.")
+            else:
+                print(f"{num}={p}*{q}")
+        if time.time() - start_time > 5:
+            print("Time limit exceeded")
+            exit()
+
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found."
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+
+
+

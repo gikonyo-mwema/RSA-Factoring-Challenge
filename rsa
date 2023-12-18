@@ -1,0 +1,86 @@
+#!/usr/bin/python3
+
+import time
+import math
+improt sys
+import random
+
+def pollards_p_1(n):
+    B = 10
+    a = 2
+    for j in range(2, B+1):
+    a = a**j % n
+
+
+    d = math.gcd(a-1, n)
+    if 1 < d < n:
+        return d
+    else:
+        return n
+
+def perfectPower(n):
+    b = math.log2(n)
+    for a in range(2, math.floor(b)+1):
+        lo = 1
+        hi = math.floor(n**(1/a))+1
+        while lo < hi:
+        mid = (lo+hi+1)//2
+        if mid**a < n:
+            lo = mid
+        else:
+            hi = mid - 1
+        if lo**a == n:
+        return a
+    return False
+
+def aks_primality(n):
+    if perfectPower(n):
+        return False
+    r = 1
+    while True:
+        order = pow(n, r)
+        if order > n**2:
+            break
+        r += 1
+    for a in range(2, min(r, n)):
+        if math.gcd(a, n) > 1:
+            return False
+    if n <= r:
+        return True
+    return True
+
+def main():
+if len(sys.argv) != 2:
+    print("Usage: python factorize.py <file>")
+    return
+
+    file_path = sys.argv[1]
+
+    start_time = time.time(0
+    try:
+        with open(file_path, 'r') as file:
+            number = int(file.readline().strip())
+        p = pollards_p_1(p)
+        while not aks_primality(p):
+            p = pollards_p_1(p)
+        q = number // p
+        if p == number or q == number:
+            print(f"{number} is prime.")
+        else:
+            print(f"{number}={p}*{q}")
+        if time.time() - start_time > 5:
+            print("Time limit exceeded")
+            exit()
+
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found.")
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+
+
