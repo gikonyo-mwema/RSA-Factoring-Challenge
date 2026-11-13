@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Local Python environments
+.venv/
+venv/
+
+# Node.js dependencies
+node_modules/
+
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
+*-journal
+*-shm
+*-wal
